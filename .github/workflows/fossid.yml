@@ -7,7 +7,7 @@ jobs:
     name: FossID Annotate PR
     runs-on: ubuntu-latest
     container:
-      image: quay.io/fossid/fossid-cicd:0.2.8
+      image: quay.io/fossid/fossid-cicd:0.3.2
       credentials:
         username: ${{ secrets.QUAY_USERNAME }}
         password: ${{ secrets.QUAY_PASSWORD }}
