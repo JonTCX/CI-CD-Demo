@@ -1,0 +1,24 @@
+name: FossID Scanning
+
+on: pull_request
+
+jobs:
+  run-fossid-cicd:
+    name: FossID Annotate PR
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/fossid/fossid-cicd:0.2.8
+      credentials:
+        username: ${{ secrets.QUAY_USERNAME }}
+        password: ${{ secrets.QUAY_PASSWORD }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run fossid-cicd
+        run: |
+          fossid-cicd \
+          diff-scan \
+          --fossid-host ${{ secrets.FOSSID_HOST }} \
+          --fossid-token ${{ secrets.FOSSID_TOKEN }} \
+          --github-workflow-errors \
+          --fail-on-any-issues 1
