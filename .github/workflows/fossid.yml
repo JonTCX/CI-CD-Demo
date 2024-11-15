@@ -21,4 +21,5 @@ jobs:
           --fossid-host ${{ secrets.FOSSID_HOST }} \
           --fossid-token ${{ secrets.FOSSID_TOKEN }} \
           --github-workflow-errors \
+          --policy-file . \
           --fail-on-any-issues 1
