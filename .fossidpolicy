@@ -1,13 +1,13 @@
 [   
   {
   "id":"MIT",
-   "blocked": false,
+   "blocked": true,
    "reason": "Permissive License"
   }
   ,
   {
     "id":"Apache-2.0",
-    "blocked": false,
+    "blocked": true,
     "reason": "Approved through legal"
   } 
  ]
