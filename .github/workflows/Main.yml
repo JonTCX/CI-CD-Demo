@@ -1,0 +1,13 @@
+name: Main Workflow
+
+on:
+  pull_request:
+
+jobs:
+  call-fossid-scan:
+    uses: ./.github/workflows/fossid-scan.yml
+    with:
+      fossid-host: ${{ secrets.FOSSID_HOST }}
+      fossid-token: ${{ secrets.FOSSID_TOKEN }}
+      quay-username: ${{ secrets.QUAY_USERNAME }}
+      quay-password: ${{ secrets.QUAY_PASSWORD }}
