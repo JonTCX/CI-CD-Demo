@@ -138,3 +138,36 @@ typedef struct tinydir_dir
 #else
         _TINYDIR_DIR *_d;
 ### END
+bool getLabelColor(const TDF_Label &label, const Handle(XCAFDoc_ShapeTool) & shapeTool, const Handle(XCAFDoc_ColorTool) & colorTool, std::string &color)
+{
+    if (getLabelColorNoRef(label, colorTool, color))
+    {
+        return true;
+    }
+
+    if (XCAFDoc_ShapeTool::IsReference(label))
+    {
+        TDF_Label referredShape;
+        shapeTool->GetReferredShape(label, referredShape);
+        return getLabelColor(referredShape, shapeTool, colorTool, color);
+    }
+
+    return false;
+}
+
+bool getShapeColor(const TopoDS_Shape &shape, const Handle(XCAFDoc_ShapeTool) & shapeTool, const Handle(XCAFDoc_ColorTool) & colorTool, std::string &color)
+{
+    TDF_Label shapeLabel;
+    if (!shapeTool->Search(shape, shapeLabel))
+    {
+        return false;
+    }
+    return getLabelColor(shapeLabel, shapeTool, colorTool, color);
+}
+
+bool isFreeShape(const TDF_Label &label, const Handle(XCAFDoc_ShapeTool) & shapeTool)
+{
+    TopoDS_Shape tmpShape;
+    return shapeTool->GetShape(label, tmpShape) && shapeTool->IsFree(label);
+}
+
