@@ -12,8 +12,8 @@ pipeline {
                 }
             }
             environment {
-                FOSSID_HOST = credentials('FOSSID_HOST')     // Jenkins Credentials ID
-                FOSSID_TOKEN = credentials('FOSSID_TOKEN')   // Jenkins Credentials ID
+                FOSSID_HOST = credentials('QUAY_USERNAME')     // Jenkins Credentials ID
+                FOSSID_TOKEN = credentials('QUAY_PASSWORD')   // Jenkins Credentials ID
             }
 
             steps {
