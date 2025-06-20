@@ -1,9 +1,6 @@
 pipeline {
-  agent {
-    any {
-      image 'ubuntu:latest'
-      args '-u root' // use root to install packages and access Docker
-    }
+  agent any{
+ 
   }
   environment {
     PROJECT_CODE = 'AgentTest1'
@@ -15,7 +12,7 @@ pipeline {
 
   stages {
 
-    stage('FossidGetDiffScan') {
+    stage('DiffScan') {
       steps {
         checkout scm
  
