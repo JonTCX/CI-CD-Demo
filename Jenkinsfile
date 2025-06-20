@@ -1,10 +1,6 @@
 pipeline 
 {
   agent any {
-    docker {
-      image 'ubuntu:latest'
-      args '-u root' // use root to install packages and access Docker
-    }
   }
   environment {
     PROJECT_CODE = 'AgentTest1'
