@@ -1,5 +1,5 @@
 pipeline {
-  agent {
+  agent any {
     docker {
       image 'ubuntu:latest'
       args '-u root' // use root to install packages and access Docker
@@ -15,7 +15,7 @@ pipeline {
 
   stages {
 
-    stage('FossidGetDiffScan') {
+    stage('GitDiff') {
       steps {
         checkout scm
  
