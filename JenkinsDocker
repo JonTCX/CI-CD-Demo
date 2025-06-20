@@ -1,6 +1,5 @@
 pipeline {
-  agent any{
-   }
+  agent any
   environment {
     PROJECT_CODE = 'AgentTest1'
     API_URL = credentials('ScanServer') 
