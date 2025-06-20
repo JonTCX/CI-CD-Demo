@@ -5,8 +5,8 @@ node {
 
         // Set up environment variables using Jenkins credentials
         env.PROJECT_CODE = 'AgentTest1'
-        env.API_URL = credentials('ScanServer')
-        env.API_TOKEN = credentials('ScanToken')
+        env.API_URL = credentials('WB_User')
+        env.API_TOKEN = credentials('WB_Token')
         env.QUAY_USERNAME = credentials('QuayLogin')
         env.QUAY_PASSWORD = credentials('Secret Text')
 
@@ -45,7 +45,7 @@ node {
                     -v "\$(pwd)/analyzed_code:/tmp/analyzed_code" \
                     -v "\$(pwd)/results:/tmp/results" \
                     quay.io/fossid/workbench-agent:0.4.2 \
-                    --api_url "$API_URL" \
+                    --api_url "$https://eval-eu.foss.id/cs-demo/" \
                     --api_token "$API_TOKEN" \
                     --project_code "$PROJECT_CODE" \
                     --scan_code "${env.GIT_COMMIT}" \
