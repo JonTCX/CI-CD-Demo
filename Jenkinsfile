@@ -1,4 +1,5 @@
-pipeline {
+pipeline 
+{
   agent any {
     docker {
       image 'ubuntu:latest'
@@ -96,4 +97,4 @@ pipeline {
       }
     }
   }
-}
+
