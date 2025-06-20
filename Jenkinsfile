@@ -1,7 +1,8 @@
 // Jenkinsfile - Scripted Pipeline version of your multi-stage declarative pipeline
 
 node {
-    stage('FossIDDIFFPR') {
+    docker.image('ubuntu:latest').inside {
+        stage('FossIDDIFFPR'){
 
         // Set up environment variables using Jenkins credentials
         env.PROJECT_CODE = 'AgentTest1'
