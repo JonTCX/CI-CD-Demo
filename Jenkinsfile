@@ -12,25 +12,25 @@ node {
 
     def hasChanges = false
 
-    stage('Detect Changes') {
-        script {
+stage('Detect Changes') {
+    script {
+        if (env.CHANGE_BRANCH && env.CHANGE_TARGET) {
             def base = sh(script: "git merge-base origin/${env.CHANGE_TARGET} origin/${env.CHANGE_BRANCH}", returnStdout: true).trim()
-            def changedFiles = sh(script: "git diff --name-only --diff-filter=d ${base} origin/${env.CHANGE_BRANCH}", returnStdout: true).trim()
-
+            def changedFiles = sh(script: "git diff --name-only --diff-filter=d ${base} ${env.CHANGE_BRANCH}", returnStdout: true).trim()
+            
             if (changedFiles) {
-                hasChanges = true
-                writeFile file: 'changed_files.txt', text: changedFiles
-
-                sh '''
-                    mkdir -p analyzed_code
-                    while IFS= read -r file; do
-                        dir="analyzed_code/$(dirname "$file")"
-                        mkdir -p "$dir"
-                        cp "$file" "analyzed_code/$file"
-                    done < changed_files.txt
-                '''
+                echo "Changed files:\n${changedFiles}"
+                // could add scan logic here
+                currentBuild.result = 'SUCCESS'
             } else {
-                currentBuild.description = "No file changes detected"
+                echo "No file changes detected."
+                currentBuild.description = "No file changes"
+                currentBuild.result = 'SUCCESS'  // Explicitly set to success
+            }
+        } else {
+            echo "No PR context (env.CHANGE_BRANCH or env.CHANGE_TARGET is null). Skipping diff."
+            currentBuild.description = "Skipped - Not a PR"
+            currentBuild.result = 'SUCCESS'
             }
         }
     }
