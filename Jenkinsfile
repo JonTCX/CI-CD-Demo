@@ -6,7 +6,8 @@ node {
 
         // Set up environment variables using Jenkins credentials
         env.PROJECT_CODE = 'AgentTest1'
-        env.API_URL = credentials('WB_User')
+        env.API_User = credentials('WB_User')
+        env.API_URL = credentials('WB_Url')
         env.API_TOKEN = credentials('WB_Token')
         env.QUAY_USERNAME = credentials('QuayLogin')
         env.QUAY_PASSWORD = credentials('Secret Text')
