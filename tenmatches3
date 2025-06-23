@@ -1,3 +1,51 @@
+            if (is_endian.little)
+### chromium 78.0.3904.106 /base/allocator/allocator_shim.cc
+ALWAYS_INLINE void* ShimAlignedRealloc(void* address,
+                                       size_t size,
+                                       size_t alignment,
+                                       void* context) {
+  // _aligned_realloc(size == 0) means _aligned_free() and might return a
+  // nullptr. We should not call the std::new_handler in that case, though.
+  const base::allocator::AllocatorDispatch* const chain_head = GetChainHead();
+  void* ptr = nullptr;
+  do {
+    ptr = chain_head->aligned_realloc_function(chain_head, address, size,
+                                               alignment, context);
+### tensorflow-1.12.0 c_api.cc
+  if (dtype != TF_STRING && dtype != TF_RESOURCE &&
+      tensorflow::DataTypeCanUseMemcpy(static_cast<DataType>(dtype)) &&
+      reinterpret_cast<intptr_t>(data) % std::max(1, EIGEN_MAX_ALIGN_BYTES) !=
+          0) {
+    // TF_STRING and TF_RESOURCE tensors have a different representation in
+    // TF_Tensor than they do in tensorflow::Tensor. So a copy here is a waste
+    // (any alignment requirements will be taken care of by TF_TensorToTensor
+    // and TF_TensorFromTensor).
+    //
+    // Other types have the same representation, so copy only if it is safe to
+    // do so.
+    buf->data_ = allocate_tensor("TF_NewTensor", len);
+### source/angular-8.1.3/packages/examples/core/ts/change_detect/change-detection.ts:64+15
+  constructor() {
+    setInterval(() => { this.data = 2; }, 500);
+  }
+}
+
+
+@Component({selector: 'live-data', inputs: ['live'], template: 'Data: {{dataProvider.data}}'})
+class LiveData {
+  constructor(private ref: ChangeDetectorRef, private dataProvider: DataProvider) {}
+
+  set live(value: boolean) {
+### tinydir-3aae922 tinydir.h
+typedef struct tinydir_dir
+{
+        _tinydir_char_t path[_TINYDIR_PATH_MAX];
+        int has_next;
+        size_t n_files;
+
+        tinydir_file *_files;
+#ifdef _MSC_VER
+        HANDLE _h;
 ### source/bootstrap-4.1.3/js/src/tooltip.js:663+17
       const popperInstance = popperData.instance
       this.tip = popperInstance.popper
@@ -134,6 +182,21 @@ typedef struct tinydir_dir
         tinydir_file *_files;
 #ifdef _MSC_VER
         HANDLE _h;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         WIN32_FIND_DATA _f;
 #else
         _TINYDIR_DIR *_d;
