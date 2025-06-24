@@ -15,25 +15,32 @@ node {
 stage('Detect Changes') {
     script {
         if (env.CHANGE_BRANCH && env.CHANGE_TARGET) {
-            def base = sh(script: "git merge-base origin/${env.CHANGE_TARGET} origin/${env.CHANGE_BRANCH}", returnStdout: true).trim()
-            def changedFiles = sh(script: "git diff --name-only --diff-filter=d ${base} ${env.CHANGE_BRANCH}", returnStdout: true).trim()
-            
+            // Ensure all remote branches are fetched
+            sh 'git fetch origin +refs/heads/*:refs/remotes/origin/*'
+
+            def base = sh(
+                script: "git merge-base origin/${env.CHANGE_TARGET} origin/${env.CHANGE_BRANCH}",
+                returnStdout: true
+            ).trim()
+
+            def changedFiles = sh(
+                script: "git diff --name-only --diff-filter=d ${base} origin/${env.CHANGE_BRANCH}",
+                returnStdout: true
+            ).trim()
+
             if (changedFiles) {
                 echo "Changed files:\n${changedFiles}"
-                // could add scan logic here
-                currentBuild.result = 'SUCCESS'
             } else {
-                echo "No file changes detected."
+                echo "No changes detected."
                 currentBuild.description = "No file changes"
-                currentBuild.result = 'SUCCESS'  // Explicitly set to success
+                currentBuild.result = 'SUCCESS'
             }
         } else {
-            echo "No PR context (env.CHANGE_BRANCH or env.CHANGE_TARGET is null). Skipping diff."
-            currentBuild.description = "Skipped - Not a PR"
+            echo "Not a PR context, skipping diff."
             currentBuild.result = 'SUCCESS'
-            }
         }
     }
+}
 
     if (hasChanges) {
         stage('Login to Quay') {
