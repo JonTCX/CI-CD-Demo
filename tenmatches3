@@ -138,3 +138,425 @@ typedef struct tinydir_dir
 #else
         _TINYDIR_DIR *_d;
 ### END
+
+### source/bootstrap-4.1.3/js/src/tooltip.js:663+17
+      const popperInstance = popperData.instance
+      this.tip = popperInstance.popper
+      this._cleanTipClass()
+      this.addAttachmentClass(this._getAttachment(popperData.placement))
+    }
+
+    _fixTransition() {
+      const tip = this.getTipElement()
+      const initConfigAnimation = this.config.animation
+      if (tip.getAttribute('x-placement') !== null) {
+        return
+      }
+      $(tip).removeClass(ClassName.FADE)
+### linux-2.6.10 kernel/wait.c
+void fastcall
+prepare_to_wait(wait_queue_head_t *q, wait_queue_t *wait, int state)
+{
+    unsigned long flags;
+
+    wait->flags &= ~WQ_FLAG_EXCLUSIVE;
+    spin_lock_irqsave(&q->lock, flags);
+    if (list_empty(&wait->task_list))
+        __add_wait_queue(q, wait);
+    /*
+     * don't alter the task state if this is just going to
+     * queue an async wait queue callback
+     */
+    if (is_sync_wait(wait))
+### source/jquery-3.3.1/test/unit/event.js:762+12
+    "submit": function() {
+      assert.ok( true, "Custom submit event run." );
+    }
+  } );
+
+  events = jQuery._data( obj, "events" );
+  assert.ok( events, "Object has events bound." );
+  assert.equal( obj[ "events" ], undefined, "Events object on plain objects is not events" );
+  assert.equal( obj.test, undefined, "Make sure that test event is not on the plain object." );
+  assert.equal( obj.handle, undefined, "Make sure that the event handler is not on the plain object." );
+
+  // Should trigger 1
+  jQuery( obj ).trigger( "test" );
+  jQuery( obj ).trigger( "submit" );
+### node 10.13.0 node_buffer.cc
+void Copy(const FunctionCallbackInfo<Value> &args) {          
+  Environment* env = Environment::GetCurrent(args);           
+                                                              
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[0]);               
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[1]);               
+  Local<Object> buffer_obj = args[0].As<Object>();            
+  Local<Object> target_obj = args[1].As<Object>();            
+  SPREAD_BUFFER_ARG(buffer_obj, ts_obj);                      
+  SPREAD_BUFFER_ARG(target_obj, target);                      
+                                                              
+  size_t target_start;                                        
+  size_t source_start;                                        
+### source/ofp-3.0.0/example/classifier/classifier_main.c:59+17
+  odp_cpumask_t cpumask;
+  char cpumaskstr[64];
+  odph_odpthread_params_t thr_params;
+  odp_instance_t instance;
+
+  /* Parse and store the application arguments */
+  parse_args(argc, argv, &params);
+
+  if (params.if_count > OFP_FP_INTERFACE_MAX) {
+    printf("Error: Invalid number of interfaces: maximum %d\n",
+      OFP_FP_INTERFACE_MAX);
+    exit(EXIT_FAILURE);
+  }
+
+### openssl-1.0.2q d1_pkt.c
+/* mod 128 saturating subtract of two 64-bit values in big-endian order */
+static int satsub64be(const unsigned char *v1, const unsigned char *v2)
+{
+    int ret, i;
+
+    if (sizeof(long) == 8)
+        do {
+            const union {
+                long one;
+                char little;
+            } is_endian = {
+                1
+            };
+            long l;
+
+            if (is_endian.little)
+### chromium 78.0.3904.106 /base/allocator/allocator_shim.cc
+ALWAYS_INLINE void* ShimAlignedRealloc(void* address,
+                                       size_t size,
+                                       size_t alignment,
+                                       void* context) {
+  // _aligned_realloc(size == 0) means _aligned_free() and might return a
+  // nullptr. We should not call the std::new_handler in that case, though.
+  const base::allocator::AllocatorDispatch* const chain_head = GetChainHead();
+  void* ptr = nullptr;
+  do {
+    ptr = chain_head->aligned_realloc_function(chain_head, address, size,
+                                               alignment, context);
+### tensorflow-1.12.0 c_api.cc
+  if (dtype != TF_STRING && dtype != TF_RESOURCE &&
+      tensorflow::DataTypeCanUseMemcpy(static_cast<DataType>(dtype)) &&
+      reinterpret_cast<intptr_t>(data) % std::max(1, EIGEN_MAX_ALIGN_BYTES) !=
+          0) {
+    // TF_STRING and TF_RESOURCE tensors have a different representation in
+    // TF_Tensor than they do in tensorflow::Tensor. So a copy here is a waste
+    // (any alignment requirements will be taken care of by TF_TensorToTensor
+    // and TF_TensorFromTensor).
+    //
+    // Other types have the same representation, so copy only if it is safe to
+    // do so.
+    buf->data_ = allocate_tensor("TF_NewTensor", len);
+### source/angular-8.1.3/packages/examples/core/ts/change_detect/change-detection.ts:64+15
+  constructor() {
+    setInterval(() => { this.data = 2; }, 500);
+  }
+}
+
+
+@Component({selector: 'live-data', inputs: ['live'], template: 'Data: {{dataProvider.data}}'})
+class LiveData {
+  constructor(private ref: ChangeDetectorRef, private dataProvider: DataProvider) {}
+
+  set live(value: boolean) {
+### tinydir-3aae922 tinydir.h
+typedef struct tinydir_dir
+{
+        _tinydir_char_t path[_TINYDIR_PATH_MAX];
+        int has_next;
+        size_t n_files;
+
+        tinydir_file *_files;
+#ifdef _MSC_VER
+        HANDLE _h;
+        WIN32_FIND_DATA _f;
+#else
+        _TINYDIR_DIR *_d;
+### END
+### source/bootstrap-4.1.3/js/src/tooltip.js:663+17
+      const popperInstance = popperData.instance
+      this.tip = popperInstance.popper
+      this._cleanTipClass()
+      this.addAttachmentClass(this._getAttachment(popperData.placement))
+    }
+
+    _fixTransition() {
+      const tip = this.getTipElement()
+      const initConfigAnimation = this.config.animation
+      if (tip.getAttribute('x-placement') !== null) {
+        return
+      }
+      $(tip).removeClass(ClassName.FADE)
+### linux-2.6.10 kernel/wait.c
+void fastcall
+prepare_to_wait(wait_queue_head_t *q, wait_queue_t *wait, int state)
+{
+    unsigned long flags;
+
+    wait->flags &= ~WQ_FLAG_EXCLUSIVE;
+    spin_lock_irqsave(&q->lock, flags);
+    if (list_empty(&wait->task_list))
+        __add_wait_queue(q, wait);
+    /*
+     * don't alter the task state if this is just going to
+     * queue an async wait queue callback
+     */
+    if (is_sync_wait(wait))
+### source/jquery-3.3.1/test/unit/event.js:762+12
+    "submit": function() {
+      assert.ok( true, "Custom submit event run." );
+    }
+  } );
+
+  events = jQuery._data( obj, "events" );
+  assert.ok( events, "Object has events bound." );
+  assert.equal( obj[ "events" ], undefined, "Events object on plain objects is not events" );
+  assert.equal( obj.test, undefined, "Make sure that test event is not on the plain object." );
+  assert.equal( obj.handle, undefined, "Make sure that the event handler is not on the plain object." );
+
+  // Should trigger 1
+  jQuery( obj ).trigger( "test" );
+  jQuery( obj ).trigger( "submit" );
+### node 10.13.0 node_buffer.cc
+void Copy(const FunctionCallbackInfo<Value> &args) {          
+  Environment* env = Environment::GetCurrent(args);           
+                                                              
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[0]);               
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[1]);               
+  Local<Object> buffer_obj = args[0].As<Object>();            
+  Local<Object> target_obj = args[1].As<Object>();            
+  SPREAD_BUFFER_ARG(buffer_obj, ts_obj);                      
+  SPREAD_BUFFER_ARG(target_obj, target);                      
+                                                              
+  size_t target_start;                                        
+  size_t source_start;                                        
+### source/ofp-3.0.0/example/classifier/classifier_main.c:59+17
+  odp_cpumask_t cpumask;
+  char cpumaskstr[64];
+  odph_odpthread_params_t thr_params;
+  odp_instance_t instance;
+
+  /* Parse and store the application arguments */
+  parse_args(argc, argv, &params);
+
+  if (params.if_count > OFP_FP_INTERFACE_MAX) {
+    printf("Error: Invalid number of interfaces: maximum %d\n",
+      OFP_FP_INTERFACE_MAX);
+    exit(EXIT_FAILURE);
+  }
+
+### openssl-1.0.2q d1_pkt.c
+/* mod 128 saturating subtract of two 64-bit values in big-endian order */
+static int satsub64be(const unsigned char *v1, const unsigned char *v2)
+{
+    int ret, i;
+
+    if (sizeof(long) == 8)
+        do {
+            const union {
+                long one;
+                char little;
+            } is_endian = {
+                1
+            };
+            long l;
+
+            if (is_endian.little)
+### chromium 78.0.3904.106 /base/allocator/allocator_shim.cc
+ALWAYS_INLINE void* ShimAlignedRealloc(void* address,
+                                       size_t size,
+                                       size_t alignment,
+                                       void* context) {
+  // _aligned_realloc(size == 0) means _aligned_free() and might return a
+  // nullptr. We should not call the std::new_handler in that case, though.
+  const base::allocator::AllocatorDispatch* const chain_head = GetChainHead();
+  void* ptr = nullptr;
+  do {
+    ptr = chain_head->aligned_realloc_function(chain_head, address, size,
+                                               alignment, context);
+### tensorflow-1.12.0 c_api.cc
+  if (dtype != TF_STRING && dtype != TF_RESOURCE &&
+      tensorflow::DataTypeCanUseMemcpy(static_cast<DataType>(dtype)) &&
+      reinterpret_cast<intptr_t>(data) % std::max(1, EIGEN_MAX_ALIGN_BYTES) !=
+          0) {
+    // TF_STRING and TF_RESOURCE tensors have a different representation in
+    // TF_Tensor than they do in tensorflow::Tensor. So a copy here is a waste
+    // (any alignment requirements will be taken care of by TF_TensorToTensor
+    // and TF_TensorFromTensor).
+    //
+    // Other types have the same representation, so copy only if it is safe to
+    // do so.
+    buf->data_ = allocate_tensor("TF_NewTensor", len);
+### source/angular-8.1.3/packages/examples/core/ts/change_detect/change-detection.ts:64+15
+  constructor() {
+    setInterval(() => { this.data = 2; }, 500);
+  }
+}
+
+
+@Component({selector: 'live-data', inputs: ['live'], template: 'Data: {{dataProvider.data}}'})
+class LiveData {
+  constructor(private ref: ChangeDetectorRef, private dataProvider: DataProvider) {}
+
+  set live(value: boolean) {
+### tinydir-3aae922 tinydir.h
+typedef struct tinydir_dir
+{
+        _tinydir_char_t path[_TINYDIR_PATH_MAX];
+        int has_next;
+        size_t n_files;
+
+        tinydir_file *_files;
+#ifdef _MSC_VER
+        HANDLE _h;
+        WIN32_FIND_DATA _f;
+#else
+        _TINYDIR_DIR *_d;
+### END
+
+### source/bootstrap-4.1.3/js/src/tooltip.js:663+17
+      const popperInstance = popperData.instance
+      this.tip = popperInstance.popper
+      this._cleanTipClass()
+      this.addAttachmentClass(this._getAttachment(popperData.placement))
+    }
+
+    _fixTransition() {
+      const tip = this.getTipElement()
+      const initConfigAnimation = this.config.animation
+      if (tip.getAttribute('x-placement') !== null) {
+        return
+      }
+      $(tip).removeClass(ClassName.FADE)
+### linux-2.6.10 kernel/wait.c
+void fastcall
+prepare_to_wait(wait_queue_head_t *q, wait_queue_t *wait, int state)
+{
+    unsigned long flags;
+
+    wait->flags &= ~WQ_FLAG_EXCLUSIVE;
+    spin_lock_irqsave(&q->lock, flags);
+    if (list_empty(&wait->task_list))
+        __add_wait_queue(q, wait);
+    /*
+     * don't alter the task state if this is just going to
+     * queue an async wait queue callback
+     */
+    if (is_sync_wait(wait))
+### source/jquery-3.3.1/test/unit/event.js:762+12
+    "submit": function() {
+      assert.ok( true, "Custom submit event run." );
+    }
+  } );
+
+  events = jQuery._data( obj, "events" );
+  assert.ok( events, "Object has events bound." );
+  assert.equal( obj[ "events" ], undefined, "Events object on plain objects is not events" );
+  assert.equal( obj.test, undefined, "Make sure that test event is not on the plain object." );
+  assert.equal( obj.handle, undefined, "Make sure that the event handler is not on the plain object." );
+
+  // Should trigger 1
+  jQuery( obj ).trigger( "test" );
+  jQuery( obj ).trigger( "submit" );
+### node 10.13.0 node_buffer.cc
+void Copy(const FunctionCallbackInfo<Value> &args) {          
+  Environment* env = Environment::GetCurrent(args);           
+                                                              
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[0]);               
+  THROW_AND_RETURN_UNLESS_BUFFER(env, args[1]);               
+  Local<Object> buffer_obj = args[0].As<Object>();            
+  Local<Object> target_obj = args[1].As<Object>();            
+  SPREAD_BUFFER_ARG(buffer_obj, ts_obj);                      
+  SPREAD_BUFFER_ARG(target_obj, target);                      
+                                                              
+  size_t target_start;                                        
+  size_t source_start;                                        
+### source/ofp-3.0.0/example/classifier/classifier_main.c:59+17
+  odp_cpumask_t cpumask;
+  char cpumaskstr[64];
+  odph_odpthread_params_t thr_params;
+  odp_instance_t instance;
+
+  /* Parse and store the application arguments */
+  parse_args(argc, argv, &params);
+
+  if (params.if_count > OFP_FP_INTERFACE_MAX) {
+    printf("Error: Invalid number of interfaces: maximum %d\n",
+      OFP_FP_INTERFACE_MAX);
+    exit(EXIT_FAILURE);
+  }
+
+### openssl-1.0.2q d1_pkt.c
+/* mod 128 saturating subtract of two 64-bit values in big-endian order */
+static int satsub64be(const unsigned char *v1, const unsigned char *v2)
+{
+    int ret, i;
+
+    if (sizeof(long) == 8)
+        do {
+            const union {
+                long one;
+                char little;
+            } is_endian = {
+                1
+            };
+            long l;
+
+            if (is_endian.little)
+### chromium 78.0.3904.106 /base/allocator/allocator_shim.cc
+ALWAYS_INLINE void* ShimAlignedRealloc(void* address,
+                                       size_t size,
+                                       size_t alignment,
+                                       void* context) {
+  // _aligned_realloc(size == 0) means _aligned_free() and might return a
+  // nullptr. We should not call the std::new_handler in that case, though.
+  const base::allocator::AllocatorDispatch* const chain_head = GetChainHead();
+  void* ptr = nullptr;
+  do {
+    ptr = chain_head->aligned_realloc_function(chain_head, address, size,
+                                               alignment, context);
+### tensorflow-1.12.0 c_api.cc
+  if (dtype != TF_STRING && dtype != TF_RESOURCE &&
+      tensorflow::DataTypeCanUseMemcpy(static_cast<DataType>(dtype)) &&
+      reinterpret_cast<intptr_t>(data) % std::max(1, EIGEN_MAX_ALIGN_BYTES) !=
+          0) {
+    // TF_STRING and TF_RESOURCE tensors have a different representation in
+    // TF_Tensor than they do in tensorflow::Tensor. So a copy here is a waste
+    // (any alignment requirements will be taken care of by TF_TensorToTensor
+    // and TF_TensorFromTensor).
+    //
+    // Other types have the same representation, so copy only if it is safe to
+    // do so.
+    buf->data_ = allocate_tensor("TF_NewTensor", len);
+### source/angular-8.1.3/packages/examples/core/ts/change_detect/change-detection.ts:64+15
+  constructor() {
+    setInterval(() => { this.data = 2; }, 500);
+  }
+}
+
+
+@Component({selector: 'live-data', inputs: ['live'], template: 'Data: {{dataProvider.data}}'})
+class LiveData {
+  constructor(private ref: ChangeDetectorRef, private dataProvider: DataProvider) {}
+
+  set live(value: boolean) {
+### tinydir-3aae922 tinydir.h
+typedef struct tinydir_dir
+{
+        _tinydir_char_t path[_TINYDIR_PATH_MAX];
+        int has_next;
+        size_t n_files;
+
+        tinydir_file *_files;
+#ifdef _MSC_VER
+        HANDLE _h;
+        WIN32_FIND_DATA _f;
+#else
+        _TINYDIR_DIR *_d;
+### END
